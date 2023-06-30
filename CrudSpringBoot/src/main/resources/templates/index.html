@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Clientes</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+</head>	
+<body>
+	<div class="container mt-4">
+		<div class="row">
+			<h1>Lista de Clientes</h1>
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+				<a th:href="@{/new}" class="btn btn-primary btn-sm mb3">Nuevo Registro</a>
+			</div>
+		</div>	
+		<br>
+		<table class="table table - striped table-bordered">
+			<thead class="table-dark">
+				<tr>
+					<th>ID</th>
+					<th>Primer Nombre</th>	
+					<th>Segundo Nombre</th>
+					<th>Primer Apellido</th>
+					<th>Segundo Apellido</th>
+					<th>Género</th>
+					<th>Teléfono</th>
+					<th>Email</th>
+					<th>Acciones</th>			
+			    </tr>
+			 </thead>
+			 <tbody>
+					<tr th:each="cliente:${clientes}">
+						<td th:text="${cliente.IdCliente}"></td>
+						<td th:text="${cliente.PrimerNombre}"></td>
+						<td th:text="${cliente.SegundoNombre}"></td>
+						<td th:text="${cliente.PrimerApellido}"></td>
+						<td th:text="${cliente.SegundoApellido}"></td>
+						<td th:text="${cliente.Genero}"></td>
+						<td th:text="${cliente.Telefono}"></td>
+						<td th:text="${cliente.Email}"></td>
+						<td>
+							<div class="row">
+								<div class="col-lg-3">
+									<a th:href="@{/editar/}+${cliente.IdCliente}" class="btn btn-warning">Editar</a>
+								</div>
+							</div>	
+							<br>
+						<a th:onclick="eliminar([[${cliente.IdCliente}]])" class="btn btn-danger">Eliminar</a>
+						</td>
+					</tr>
+			 </tbody>
+		</table>	
+	</div>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="funciones.js"></script>
+</body>
+</html>
